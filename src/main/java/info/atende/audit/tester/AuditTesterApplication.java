@@ -44,7 +44,7 @@ public class AuditTesterApplication implements CommandLineRunner {
 		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
 		Resource resource = new Resource("application");
 		AuditEvent event = new AuditEvent("audit-tester",System.getProperty("user.name"),"application_run", resource,
-				LocalDateTime.now(),localMachine.getAddress().toString(), SecurityLevel.NORMAL);
+				LocalDateTime.now(),localMachine.getHostAddress(), SecurityLevel.NORMAL);
 
 		logger.info("Sending event: " + event);
 		template.convertAndSend(event);
