@@ -16,4 +16,4 @@ Arguments:
 
 See [Spring Boot Properties Reference] for more configuration
 
-[Spring Boot Properties Reference](http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+[Spring Boot Properties Reference]: http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
