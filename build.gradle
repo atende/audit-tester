@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+		auditModelVersion = '1.0.0-SNAPSHOT'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'audit-tester'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {
+		url "http://oss.sonatype.org/content/groups/public"
+	}
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-amqp')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1')
+	compile group: 'info.atende.audition', name:'audit-model', version:"$auditModelVersion", changing: true
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+idea {
+	module {
+		excludeDirs += file('.wercker')
+	}
+}
+bootRun {
+	systemProperties System.properties
+}
